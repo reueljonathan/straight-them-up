@@ -1,21 +1,31 @@
 local gameplay = {}
 
-local time = 10
+local time = 90
 local gameover = false
 local changeToState
 
 local hand = love.graphics.newImage('img/hand.png')
-local handx = 20
+local handx = 324
 local handy = 475
+
+local suits = {'heart', 'diamond', 'club', 'spade'}
+local values = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'J', 'Q', 'K'} 
+
+function gameplay.reset()
+    time = 90
+    gameover = false
+    
+    handx = 324
+end
 
 function gameplay.keyreleased(key)
     if gameover and changeToState ~= nil then
         changeToState('states.menu')
     else
         if key == 'left' then
-            handx = handx - 125
+            handx = handx - 152
         elseif key == 'right' then
-            handx = handx + 125
+            handx = handx + 152
         end 
     end 
 end

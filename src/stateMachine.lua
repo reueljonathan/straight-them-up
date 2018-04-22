@@ -5,6 +5,7 @@ local actualState
 function stateMachine.changeToState(state)
     actualState = require(state)
     actualState.setChangeToState( stateMachine.changeToState ) 
+    actualState.reset()
 end
 
 function stateMachine.update(dt)

@@ -2,6 +2,9 @@ local menu = {}
 
 local changeToState
 
+function menu.reset()
+end
+
 function menu.update(dt)
     
 end
@@ -19,5 +22,6 @@ end
 function menu.setChangeToState(cts)
     changeToState = cts
 end
+
 
 return menu
