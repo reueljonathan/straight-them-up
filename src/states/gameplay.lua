@@ -1,10 +1,12 @@
 local gameplay = {}
 
-local time = 90
+local time = 60
+local startTime, starting
 local points = 0
 local gameover = false
 local changeToState
 
+local fontHud
 local background, cardsImg
 local shuffler = {}
 local handx = 324
@@ -20,6 +22,10 @@ local bullets
 local frameTime = 1/60-- forcing 60fps
 
 local currentFrame
+
+local message, combination
+
+local combinationTime, combinationAlpha
 
 function randomizeCards() 
     return  { {suit = suits[math.random(4)], value = values[math.random(12)]}} 
@@ -159,7 +165,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 512
+            return 512, 'ROYAL FLUSH! +512'
         end
     end
    
@@ -171,19 +177,18 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 216
+            return 216, 'STRAIGHT FLUSH! +216'
         end
     end
-
+ 
     for i=1, 3 do
         local subhand = getSubgroup(hand, i, 5)
-        
         if isFourOfKind(subhand) then
             print('foak')
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 128
+            return 128, 'FOUR OF A KIND! +128'
         end
     end
 
@@ -195,7 +200,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 64
+            return 64, 'FULL HOUSE! +64'
         end
     end
 
@@ -207,7 +212,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 32
+            return 32, 'FLUSH! +32'
         end
     end
 
@@ -219,7 +224,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 16
+            return 16, 'STRAIGHT! + 16'
         end
     end
 
@@ -231,7 +236,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 8
+            return 8, 'THREE OF A KIND! +8'
         end
     end
 
@@ -243,7 +248,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return 4
+            return 4, 'TWO PAIRS! +4'
         end
     end
 
@@ -257,22 +262,27 @@ function searchCombinations(hand)
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
 
-            return 2
+            return 2, 'PAIR! +2'
         end
     end
 
 
     print('high card')
-    return 1
+    return 1, 'HIGH CARD! +1'
 end
 
 function gameplay.reset()
     currentFrame = 0
-    time = 90
+    time = 60
     points = 0
     gameover = false
     background = love.graphics.newImage('/img/background.png')
     cardsImg = love.graphics.newImage('/img/cards.png')
+    fontHud = love.graphics.setNewFont('/fonts/Comfortaa-Regular.ttf', 25)
+    starting = true
+    startTime = 4
+    combinationAlpha = 1
+    combinationTime = 0
 
     shuffler = {
         img = love.graphics.newImage('/img/shuffler.png'),
@@ -363,7 +373,7 @@ function gameplay.keypressed(key)
     else
         if key == 'up' then
             print('fire!')
-            if not shuffler.firing then
+            if not shuffler.firing and not shuffler.reloading then
                 shuffler.firing = true
             end
         end 
@@ -470,14 +480,35 @@ function gameplay.draw()
     end
 
     if gameover then
-        love.graphics.print("GAME OVER, DUDE", 400, 300)
+        love.graphics.print("GAME OVER!", 370, 300)
     end
 
     love.graphics.print( tostring(love.timer.getFPS()), 750, 20)
+    
+    if starting then
+        if math.floor(startTime) == 0 then
+            love.graphics.print( 'GO!', 370, 250)
+        else
+            love.graphics.print( math.floor(startTime), 390, 250)
+        end
+    end
+    
+    if showCombinationType then
+        love.graphics.setColor(1,1,1, 1-(combinationAlpha*combinationAlpha*combinationAlpha*combinationAlpha)) -- 1 - alpha^4
+        love.graphics.print(combinationType, 300,  20)
+        love.graphics.setColor(1,1,1,1)
+    end
         
 end
 
 function gameplay.update(dt)
+    if starting and startTime > 0 then
+        startTime = startTime - dt 
+        return
+    else
+       starting = false
+    end
+
     if time < 0 then 
         gameover = true
     else
@@ -485,15 +516,20 @@ function gameplay.update(dt)
     end
 
     if not gameover then
-        if currentFrame + dt > frameTime then
+        if currentFrame + dt > frameTime then -- trying to force 60fps, i really don't know if it works, no time to figure out now. =(
             if #enemies < 1 then
                 table.insert( enemies, createEnemie() )
             end
 
             for i=1, #enemies do
                 if #enemies[i].cards == 7 then
-                    points = points + searchCombinations(enemies[i].cards)
+                    local addPoints
+
+                    addPoints, combinationType = searchCombinations(enemies[i].cards)
+                    points = points + addPoints
                     enemies[i].cards = randomizeCards()
+                    showCombinationType = true
+                    combinationAlpha = 0
                 else
                     enemies[i]:update(currentFrame + dt)
                 end
@@ -502,7 +538,7 @@ function gameplay.update(dt)
  
             for i=1, #bullets do
                 if bullets[i] and not bullets[i].isDead then
-                    bullets[i].y = bullets[i].y - 5
+                    bullets[i].y = bullets[i].y - 7
             
                     if bullets[i].y < -35 then
                         bullets[i].isDead = true 
@@ -516,6 +552,19 @@ function gameplay.update(dt)
             shuffler:update(currentFrame + dt)
             currentFrame = 0
             drawFrame = true
+            
+            if showCombinationType then
+                combinationTime = combinationTime + dt
+
+                if combinationTime > 0.005 then
+                    combinationAlpha = combinationAlpha + 0.1 
+                    combinationTime = 0
+                end
+                 
+                if combinationAlpha == 1 then
+                    showCombinationType = false
+                end
+            end
         else
             currentFrame = currentFrame + dt 
         end

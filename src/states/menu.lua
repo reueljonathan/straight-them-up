@@ -32,13 +32,13 @@ function menu.draw()
     love.graphics.draw(titleImg, 107, 100)
 end
 
-function menu.keyreleased(key)
+function menu.keypressed(key)
     if changeToState ~= nil then
         changeToState('states.gameplay')
     end
 end
 
-function menu.keypressed(key)
+function menu.keyreleased(key)
 
 end
 
