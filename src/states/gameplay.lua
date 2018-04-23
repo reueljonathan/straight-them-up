@@ -31,67 +31,67 @@ function randomizePlayerCards()
     } 
 end
 
-function isFlush(list) 
+function isFlush(hand) 
     for i=1, 4 do
-        if list[i].suit ~= list[i+1].suit then
+        if hand[i].suit ~= hand[i+1].suit then
             return false
         end 
     end 
     return true
 end
 
-function isRoyalStraight(list)
+function isRoyalStraight(hand)
     return (
-        list[1].value == 1 and  -- A
-        list[2].value == 10 and -- 10
-        list[3].value == 11 and -- J
-        list[4].value == 12 and -- Q
-        list[5].value == 13 )   -- K
+        hand[1].value == 1 and  -- A
+        hand[2].value == 10 and -- 10
+        hand[3].value == 11 and -- J
+        hand[4].value == 12 and -- Q
+        hand[5].value == 13 )   -- K
 end
 
-function isStraight(list)
+function isStraight(hand)
     for i=1, 4 do
-        if list[i].value ~= (list[i+1].value-1) then
+        if hand[i].value ~= (hand[i+1].value-1) then
             return false
         end
     end 
     return true
 end
 
-function isFourOfKind(list)
+function isFourOfKind(hand)
     return (
-        list[1].value == list[2].value and
-        list[2].value == list[3].value and
-        list[3].value == list[4].value
+        hand[1].value == hand[2].value and
+        hand[2].value == hand[3].value and
+        hand[3].value == hand[4].value
     ) or (
-        list[2].value == list[3].value and
-        list[3].value == list[4].value and
-        list[4].value == list[5].value
+        hand[2].value == hand[3].value and
+        hand[3].value == hand[4].value and
+        hand[4].value == hand[5].value
     )
 end
 
-function isFullHouse(list)
+function isFullHouse(hand)
     return (
-        list[1].value == list[2].value and
-        list[3].value == list[4].value and
-        list[4].value == list[5].value
+        hand[1].value == hand[2].value and
+        hand[3].value == hand[4].value and
+        hand[4].value == hand[5].value
     ) or (
-        list[1].value == list[2].value and
-        list[2].value == list[3].value and
-        list[4].value == list[5].value
+        hand[1].value == hand[2].value and
+        hand[2].value == hand[3].value and
+        hand[4].value == hand[5].value
     )
 end
 
-function isThreeOfKind(list)
+function isThreeOfKind(hand)
     return (
-        list[1].value == list[2].value and
-        list[2].value == list[3].value 
+        hand[1].value == hand[2].value and
+        hand[2].value == hand[3].value 
     ) or ( 
-        list[2].value == list[3].value and
-        list[3].value == list[4].value
+        hand[2].value == hand[3].value and
+        hand[3].value == hand[4].value
     ) or (
-        list[3].value == list[4].value and
-        list[4].value == list[5].value
+        hand[3].value == hand[4].value and
+        hand[4].value == hand[5].value
     )
 end
 
@@ -118,72 +118,137 @@ function isPair(hand)
     return false
 end
 
-function searchCombinations(list)
-    local flush, straight, fourofkind, threeofkind
-    
+function getSubgroup(hand, start, size)
+    local subgroup = {}
+
+    for i=1, size do
+        subgroup[i] = hand[start+i-1]
+    end
+
+    return subgroup
+end
+
+function searchCombinations(hand)    
     -- It is very important to sort the list (the hand) in ascending order,
     -- because all the following functions consider that
     -- when searching for the poker combinations 
-    table.sort( list, function (a,b)
+    table.sort( hand, function (a,b)
         return a.value < b.value
     end)
-    
-    flush = isFlush(list)
-    straight = isRoyalStraight(list)
 
-    if flush and straight then
-        -- royal flush
-        print('royal flush') 
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isFlush(subhand) and isRoyalStraight(subhand) then
+            print('royal flush')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
+    end
+   
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isFlush(subhand) and isStraight(subhand) then
+            print('straight flush')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    straight = isStraight(list)
-
-    if flush and straight then
-        -- straight flush
-        print('straight flush')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isFourOfKind(subhand) then
+            print('foak')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if isFourOfKind(list) then
-        print('four of a kind')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isFullHouse(subhand) then
+            print('full house')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if isFullHouse(list) then
-        print('full house')
-        return 
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isFlush(subhand) then
+            print('flush')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if flush then
-        print('flush')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isStraight(subhand) then
+            print('straight')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if straight then
-        print('straight')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isThreeOfKind(subhand) then
+            print('toak')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if isThreeOfKind(list) then
-        print('toak')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isTwoPairs(subhand) then
+            print('two pairs')
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+            return
+        end
     end
 
-    if isTwoPairs(list) then
-        print('two pairs')
-        return
+    for i=1, 3 do
+        local subhand = getSubgroup(hand, i, 5)
+        
+        if isPair(subhand) then
+            print('pair')
+
+            for j=1, #hand do
+                print('  '..hand[j].value .. ' '.. hand[j].suit)
+            end
+
+            return
+        end
     end
 
-    if isPair(list) then
-        print('pair')
-        return
-    end
 
     print('high card')
     return
-
-
 end
 
 function gameplay.reset()
@@ -212,7 +277,7 @@ function gameplay.keyreleased(key)
         elseif key == 'up' then
             table.insert(cards[handx+1], playerCards[1])
             table.insert(cards[handx+1], playerCards[2])
-            if #cards[handx+1] == 5 then
+            if #cards[handx+1] == 7 then
                 searchCombinations(cards[handx+1])
                 randomizeCards(handx+1)
             end 
