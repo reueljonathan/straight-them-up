@@ -17,6 +17,10 @@ local cards = {}
 local enemies
 local bullets
 
+local frameTime = 1/60-- forcing 60fps
+
+local currentFrame
+
 function randomizeCards() 
     return  { {suit = suits[math.random(4)], value = values[math.random(12)]}} 
 end
@@ -27,13 +31,17 @@ function randomizePlayerCards(player)
             x=nil,
             y=nil,
             suit = suits[math.random(4)],
-            value = values[math.random(12)]
+            value = values[math.random(12)],
+            width = 25,
+            height = 36
         },
         {
             x=nil,
             y=nil,
             suit = suits[math.random(4)],
-            value = values[math.random(12)]
+            value = values[math.random(12)],
+            width = 25,
+            height = 36
         }
     } 
 end
@@ -151,7 +159,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 512
         end
     end
    
@@ -163,7 +171,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 216
         end
     end
 
@@ -175,7 +183,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 128
         end
     end
 
@@ -187,7 +195,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 64
         end
     end
 
@@ -199,7 +207,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 32
         end
     end
 
@@ -211,7 +219,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 16
         end
     end
 
@@ -223,7 +231,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 8
         end
     end
 
@@ -235,7 +243,7 @@ function searchCombinations(hand)
             for j=1, #hand do
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
-            return
+            return 4
         end
     end
 
@@ -249,16 +257,17 @@ function searchCombinations(hand)
                 print('  '..hand[j].value .. ' '.. hand[j].suit)
             end
 
-            return
+            return 2
         end
     end
 
 
     print('high card')
-    return
+    return 1
 end
 
 function gameplay.reset()
+    currentFrame = 0
     time = 90
     points = 0
     gameover = false
@@ -273,36 +282,59 @@ function gameplay.reset()
         firedCards=0,
         firing = false,
         timeFromLastShoot = 0,
+        timeReloading = 0,
         update = function(self, dt)
             if love.keyboard.isDown('left') and self.x > 20 then
-                self.x = self.x - 1
+                self.x = self.x - 5
             elseif love.keyboard.isDown('right') and self.x < 750 then
-                self.x = self.x + 1
+                self.x = self.x + 5
             end
 
-            if self.firing then
+            if self.firing and not self.reloading then
                 if self.firedCards == 0 then
-                    local b = self.cards[1] -- table.remove(self.cards, 1)
-                    b.x = self.x + 3
-                    b.y = self.y + 2
-                    table.insert( bullets, b)
+                    local copy = {
+                        x = self.x + 3,
+                        y = self.y + 2,
+                        value = self.cards[1].value,
+                        suit = self.cards[1].suit,
+                        width = self.cards[1].width,
+                        height = self.cards[1].height     
+                    }
+                    
+                    --bullets = {}
+                    table.insert( bullets, copy)
                     self.firedCards =  1
                 elseif self.firedCards == 1 then
                     self.timeFromLastShoot = self.timeFromLastShoot + dt
                     
-                    if self.timeFromLastShoot > 0.2 then -- if 200ms from last shoot
-                        local b = self.cards[2] -- table.remove(self.cards, 1)
-                        b.x = self.x + 3
-                        b.y = self.y + 2
-                        table.insert( bullets, b)
+                    if self.timeFromLastShoot > 0.05 then -- if 50ms from last shoot
+                        local copy = {
+                            x = self.x + 3,
+                            y = self.y + 2,
+                            value = self.cards[2].value,
+                            suit = self.cards[2].suit,
+                            width = self.cards[2].width,
+                            height = self.cards[2].height     
+                        }
+                        table.insert( bullets, copy)
                         self.timeFromLastShoot = 0
                         self.firedCards = 2 
                     end
                 else
-                    self.firing = false             
+                    self.firing = false
                     self.firedCards = 0
+                    self.reloading = true             
                     randomizePlayerCards(self)
                 end 
+            end
+            
+            if self.reloading then
+                self.timeReloading = self.timeReloading + dt
+                
+                if self.timeReloading > 1.5 then
+                    self.reloading = false
+                    self.timeReloading = 0
+                end
             end
         end
     }
@@ -358,42 +390,74 @@ function drawCard(value, suit, x, y)
     love.graphics.draw(cardsImg, cardQuad, x, y)
 end
 
+function collide(a, b)
+    return  a.x < b.x+b.width and
+            a.x + a.width > b.x and
+            a.y < b.y + b.height and
+            a.y + a.height > b.y
+end
+
 function createEnemie()
     local e = {
         x = math.floor( math.random() *760) + 20,
         y = math.floor( math.random() *200 ) + 20,
+        width = 25,
+        height = 36,
         update = function(self, dt)
-            self.x = self.x + 0.1
+            self.x = self.x + 1
 
             if(self.x > 800) then
                 self.x = -25
             end
 
+            for i=1, #bullets do
+                if not bullets[i].isDead and collide(self, bullets[i]) then
+                    local copy = {
+                        x = bullets[i].x,
+                        y = bullets[i].y,
+                        width = bullets[i].width,
+                        height = bullets[i].height,
+                        value = bullets[i].value,
+                        suit = bullets[i].suit 
+                    }
+                    table.insert(self.cards, copy)
+                    bullets[i].isDead = true
+                end 
+            end
         end,
         cards = randomizeCards()
     }
     return e
 end
 
+function removeDeadBullets(bullets)
+    local new = {}
+    
+    for i=1, #bullets do
+        if not bullets[i].isDead then
+            table.insert( new, bullets[i] )
+        end
+    end
+    
+    return new
+end
+
 function gameplay.draw()
     love.graphics.draw(background, 0, 0)
     
-    love.graphics.print( math.floor(time), 20, 15)
-
-    --love.graphics.draw( hand, 20+ (152*handx), handy )
-
-    
+    love.graphics.print( 'time: '.. math.floor(time), 20, 15)
+    love.graphics.print( 'points: ' .. points, 150, 15)
 
     for i=1, #enemies do 
         for j=1, #enemies[i].cards do
-            --love.graphics.draw(cardImg, 20+(i-1)*152, 30+(j*20))
-            --love.graphics.print(cards[i][j].value .. ' ' .. cards[i][j].suit, 20 + (i-1)*152, 30 + (j*20))
-            drawCard( enemies[i].cards[j].value, enemies[i].cards[j].suit, enemies[i].x, enemies[i].y)
+            drawCard( enemies[i].cards[j].value, enemies[i].cards[j].suit, enemies[i].x, enemies[i].y + (j-1)*15)
         end
     end
 
     for i=1, #bullets do
-        drawCard( bullets[i].value, bullets[i].suit, bullets[i].x, bullets[i].y)
+        if bullets[i] and not bullets[i].isDead then
+            drawCard( bullets[i].value, bullets[i].suit, bullets[i].x, bullets[i].y)
+        end
     end
     
     if #shuffler.cards > 0 then
@@ -408,6 +472,9 @@ function gameplay.draw()
     if gameover then
         love.graphics.print("GAME OVER, DUDE", 400, 300)
     end
+
+    love.graphics.print( tostring(love.timer.getFPS()), 750, 20)
+        
 end
 
 function gameplay.update(dt)
@@ -418,38 +485,42 @@ function gameplay.update(dt)
     end
 
     if not gameover then
-        if #enemies < 5 then
-            table.insert( enemies, createEnemie() )
-        end
-
-        for i=1, #enemies do
-            enemies[i]:update(dt)
-        end
-        
-        -- remove dead bullets
-        --[[local i = 1
-        local size = #bullets
-        repeat
-            if bullets[i] and bullets[i].isDead then
-                table.remove( bullets, i)
-                size = #bullets
-            else
-                i = i + 1
+        if currentFrame + dt > frameTime then
+            if #enemies < 1 then
+                table.insert( enemies, createEnemie() )
             end
-        until i == size]]
+
+            for i=1, #enemies do
+                if #enemies[i].cards == 7 then
+                    points = points + searchCombinations(enemies[i].cards)
+                    enemies[i].cards = randomizeCards()
+                else
+                    enemies[i]:update(currentFrame + dt)
+                end
+            end
+        
  
-        for i=1, #bullets do
-            bullets[i].y = bullets[i].y - 1
+            for i=1, #bullets do
+                if bullets[i] and not bullets[i].isDead then
+                    bullets[i].y = bullets[i].y - 5
             
-            if bullets[i].y < -35 then
-               bullets[i].isDead = true 
+                    if bullets[i].y < -35 then
+                        bullets[i].isDead = true 
+                    end
+                end
             end
-        end
-
+            
+            bullets = removeDeadBullets(bullets)
         
 
-        shuffler:update(dt)
+            shuffler:update(currentFrame + dt)
+            currentFrame = 0
+            drawFrame = true
+        else
+            currentFrame = currentFrame + dt 
+        end
     end
+    
 end
 
 function gameplay.setChangeToState(cts)

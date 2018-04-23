@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="800"
@@ -16,11 +17,48 @@
    id="svg8"
    inkscape:version="0.92.2 (unknown)"
    sodipodi:docname="cards.svg"
-   inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/background.png"
+   inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/menu.png"
    inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96">
+   inkscape:export-ydpi="96"
+   enable-background="new">
   <defs
-     id="defs2" />
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2476">
+      <stop
+         style="stop-color:#ff6600;stop-opacity:1"
+         offset="0"
+         id="stop2472" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1"
+         offset="1"
+         id="stop2474" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2476"
+       id="linearGradient2484"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.664823,0,0,1.664823,-69.302098,-30.487286)"
+       x1="104.89394"
+       y1="44.250385"
+       x2="104.89394"
+       y2="50.01379" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter2514"
+       x="-0.01310054"
+       width="1.0262011"
+       y="-0.1428448"
+       height="1.2856896">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.84628615"
+         id="feGaussianBlur2516" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,11 +66,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.5088978"
-     inkscape:cx="28.507241"
-     inkscape:cy="84.630873"
+     inkscape:zoom="4.1292051"
+     inkscape:cx="400.5104"
+     inkscape:cy="276.88653"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer3"
      showgrid="false"
      units="px"
      showguides="true"
@@ -91,7 +129,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="card"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <g
        id="g2425"
        transform="translate(-78.657318,100.67299)">
@@ -3270,5 +3309,321 @@
          x="49.847076"
          y="32.802837"
          style="stroke-width:0.26458332"></tspan></text>
+    <g
+       transform="translate(-82.543733,114.52915)"
+       id="g2449">
+      <path
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.10059957;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         d="m 80.009214,28.6253 h 5.333887 c 0.326961,0 0.590181,0.254997 0.590181,0.571772 v 8.280866 c 0,0.316764 -0.26322,0.571762 -0.590181,0.571762 h -5.333887 c -0.326961,0 -0.590181,-0.254998 -0.590181,-0.571762 v -8.280866 c 0,-0.316775 0.26322,-0.571772 0.590181,-0.571772 z"
+         id="path2439"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:connector-curvature="0" />
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="82.577904"
+         y="32.797165"
+         id="text2443"><tspan
+           sodipodi:role="line"
+           id="tspan2441"
+           x="82.577904"
+           y="32.797165"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.26458332">K</tspan></text>
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         id="text2447"
+         y="36.690228"
+         x="82.67701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.49816823px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0874542"
+         xml:space="preserve"><tspan
+           style="text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.0874542"
+           y="36.690228"
+           x="82.67701"
+           id="tspan2445"
+           sodipodi:role="line">♣</tspan></text>
+    </g>
+    <g
+       id="g2461"
+       transform="translate(-74.606233,114.52915)">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         id="path2451"
+         d="m 80.009214,28.6253 h 5.333887 c 0.326961,0 0.590181,0.254997 0.590181,0.571772 v 8.280866 c 0,0.316764 -0.26322,0.571762 -0.590181,0.571762 h -5.333887 c -0.326961,0 -0.590181,-0.254998 -0.590181,-0.571762 v -8.280866 c 0,-0.316775 0.26322,-0.571772 0.590181,-0.571772 z"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.10059957;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+      <text
+         id="text2455"
+         y="32.797165"
+         x="82.577904"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.26458332"
+           y="32.797165"
+           x="82.577904"
+           id="tspan2453"
+           sodipodi:role="line">K</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.49816823px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0874542"
+         x="82.67701"
+         y="36.690228"
+         id="text2459"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan2457"
+           x="82.67701"
+           y="36.690228"
+           style="text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.0874542">♣</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="menu"
+     style="display:inline">
+    <text
+       id="text2482"
+       y="55.335495"
+       x="28.280064"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.61937523px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1;filter:url(#filter2514)"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1"
+         y="55.335495"
+         x="28.280064"
+         id="tspan2480"
+         sodipodi:role="line">STRAIGHT'EM UP!</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.61937523px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1"
+       x="27.221729"
+       y="54.277161"
+       id="text2470"><tspan
+         sodipodi:role="line"
+         id="tspan2468"
+         x="27.221729"
+         y="54.277161"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1"><tspan
+           style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-opacity:1"
+           id="tspan2518">STRAIGHT'EM </tspan><tspan
+           style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-opacity:1"
+           id="tspan2520">UP!</tspan></tspan></text>
+    <text
+       id="text2528"
+       y="124.07517"
+       x="66.345757"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.61937523px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-opacity:1"
+         y="124.07517"
+         x="66.345757"
+         id="tspan2526"
+         sodipodi:role="line">press any key to start</tspan></text>
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       id="path2747"
+       d="m 95.75622,98.205205 3.9805,2.653295 h 19.90346 V 82.573489 l -5.26291,-14.217657 z"
+       style="display:inline;opacity:0.5;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9011367;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+    <g
+       id="g2850"
+       transform="translate(1.9276777,-1.3769173)">
+      <g
+         id="g2743"
+         transform="matrix(2.5075231,0,0,2.5075231,-103.40651,-2.526098)"
+         style="display:inline">
+        <path
+           inkscape:connector-curvature="0"
+           inkscape:export-ydpi="96"
+           inkscape:export-xdpi="96"
+           inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+           id="path2733"
+           d="m 80.009214,28.6253 h 5.333887 c 0.326961,0 0.590181,0.254997 0.590181,0.571772 v 8.280866 c 0,0.316764 -0.26322,0.571762 -0.590181,0.571762 h -5.333887 c -0.326961,0 -0.590181,-0.254998 -0.590181,-0.571762 v -8.280866 c 0,-0.316775 0.26322,-0.571772 0.590181,-0.571772 z"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.10059957;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+        <text
+           id="text2737"
+           y="32.797165"
+           x="82.577904"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"
+           inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.26458332"
+             y="32.797165"
+             x="82.577904"
+             id="tspan2735"
+             sodipodi:role="line">K</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.49816823px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0874542"
+           x="82.67701"
+           y="36.690228"
+           id="text2741"
+           inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan2739"
+             x="82.67701"
+             y="36.690228"
+             style="text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.0874542">♣</tspan></text>
+      </g>
+      <path
+         style="display:inline;opacity:0.43999999;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26248211;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         d="m 98.649104,68.033731 c -0.07447,-0.101304 -2.788416,2.01329 -2.922042,3.363315 l -0.750276,7.576531 h 6.874224 v -2.651204 c -1.52457,-1.430964 -2.545086,-3.997091 -2.54496,-6.933802 0.0023,-0.147442 0.01003,-0.294835 0.01504,-0.441875 z"
+         id="path2745"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sccccccs"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;opacity:1;fill:#374548;fill-opacity:1;stroke:none;stroke-width:0.9011367;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         d="m 97.262268,68.193511 c -1.248721,0 -2.121013,1.100326 -2.254639,2.450352 l -1.053461,10.638514 h 19.903462 l -1.05346,-10.638514 c -0.13365,-1.350026 -1.00591,-2.450352 -2.25464,-2.450352 h -1.33348 c 0.005,0.147191 0.0101,0.294483 0.0101,0.441875 2e-4,4.494334 -2.38159,8.137788 -5.31966,8.137611 -2.93804,2.02e-4 -5.319856,-3.643277 -5.319655,-8.137611 0.0023,-0.147442 0.01003,-0.294834 0.01504,-0.441875 z"
+         id="path2749"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         inkscape:connector-curvature="0"
+         style="display:inline;opacity:1;fill:#1c241f;fill-opacity:1;stroke:none;stroke-width:9.28353882;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         d="M 93.954144,81.282377 H 113.85761 V 99.567909 H 93.954144 Z"
+         id="path2751"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.25075233;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         d="m 97.262092,68.193511 c -0.363691,0 -0.695461,0.09328 -0.986359,0.259001 -0.707848,0.403135 -1.173621,1.23453 -1.26833,2.191351 L 93.953918,81.282377 V 99.567385 H 113.85739 V 81.282377 l -1.0535,-10.638514 c -0.13365,-1.350026 -1.00596,-2.450352 -2.25469,-2.450352 h -1.33337 c 0.005,0.147191 0.0101,0.294483 0.0101,0.441875 2e-4,4.494334 -2.38117,8.137788 -5.31926,8.137611 -2.93801,2.02e-4 -5.320738,-3.643277 -5.320537,-8.137611 0.0019,-0.147442 0.01003,-0.294834 0.01505,-0.441875 z"
+         id="path2753"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ssccccccscccccs"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         sodipodi:nodetypes="sccccccscccccs"
+         inkscape:connector-curvature="0"
+         id="path2755"
+         d="m 97.009335,69.306023 c -1.126957,0 -1.151079,3.104464 -1.271666,4.25291 l -0.697292,7.85259 0.11986,16.751344 H 113.12285 V 81.411523 l -0.67367,-7.85259 c -0.12061,-1.148446 -0.17276,-4.25291 -1.29982,-4.25291 h -1.20334 c 0.005,0.125126 0.0101,0.250502 0.0101,0.375878 2e-4,3.82312 -2.23169,8.048996 -5.81264,8.048802 -3.72166,2.45e-4 -5.938442,-4.225682 -5.938266,-8.048802 0.0021,-0.125376 0.01003,-0.250777 0.01505,-0.375878 z"
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#e6e6e6;stroke-width:0.23525156;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.23525156;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         d="m 96.776335,69.172874 c -1.126955,0 -1.151078,3.104464 -1.271665,4.252909 l -0.697292,7.852588 0.119859,16.751352 H 112.88986 V 81.278371 l -0.67368,-7.852588 c -0.12061,-1.148445 -0.17277,-4.252909 -1.29982,-4.252909 h -1.20333 c 0.005,0.125126 0.0101,0.250502 0.0101,0.375878 1.9e-4,3.82312 -2.23171,8.048993 -5.81265,8.048799 -3.72166,2.53e-4 -5.938439,-4.225679 -5.938264,-8.048799 0.0021,-0.125376 0.01003,-0.250778 0.01505,-0.375878 z"
+         id="path2757"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sccccccscccccs"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/shuffler.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+  </g>
+  <g
+     transform="matrix(5.6650873,0,0,5.6650873,-462.50127,6.9528676)"
+     style="display:inline"
+     id="g2680">
+    <g
+       transform="rotate(-30,124.39308,-9.0439064)"
+       style="opacity:1"
+       id="g2562">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         id="path2530"
+         d="m 95.101593,9.5752997 h 5.333887 c 0.32696,0 0.59018,0.2549979 0.59018,0.5717723 v 8.280866 c 0,0.316764 -0.26322,0.571762 -0.59018,0.571762 h -5.333887 c -0.326962,0 -0.590181,-0.254998 -0.590181,-0.571762 v -8.280866 c 0,-0.3167744 0.263219,-0.5717723 0.590181,-0.5717723 z"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.10059957;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="97.758171"
+         y="13.747166"
+         id="text2534"><tspan
+           sodipodi:role="line"
+           id="tspan2532"
+           x="97.758171"
+           y="13.747166"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;text-align:center;text-anchor:middle;fill:#ff0000;stroke-width:0.26458332">Q</tspan></text>
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.49816823px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.0874542"
+         x="97.770248"
+         y="17.64023"
+         id="text2538"><tspan
+           sodipodi:role="line"
+           id="tspan2536"
+           x="97.770248"
+           y="17.64023"
+           style="text-align:center;text-anchor:middle;fill:#ff0000;stroke-width:0.0874542">♦</tspan></text>
+    </g>
+    <g
+       transform="rotate(-15,112.6045,6.0675052)"
+       style="opacity:1"
+       id="g2555">
+      <path
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.10059957;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         d="m 110.15707,19.1003 h 5.33389 c 0.32696,0 0.59018,0.254998 0.59018,0.571772 v 8.280866 c 0,0.316764 -0.26322,0.571762 -0.59018,0.571762 h -5.33389 c -0.32696,0 -0.59018,-0.254998 -0.59018,-0.571762 v -8.280866 c 0,-0.316774 0.26322,-0.571772 0.59018,-0.571772 z"
+         id="path2540"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:connector-curvature="0" />
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         id="text2544"
+         y="23.272165"
+         x="112.81365"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.26458332"
+           y="23.272165"
+           x="112.81365"
+           id="tspan2542"
+           sodipodi:role="line">10</tspan></text>
+      <text
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="/home/reuel/projects/straight-them-up/src/img/cards.png"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.49816823px;line-height:1.25;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0874542"
+         x="112.82487"
+         y="27.165228"
+         id="text2548"><tspan
+           sodipodi:role="line"
+           id="tspan2546"
+           x="112.82487"
+           y="27.165228"
+           style="text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.0874542">♠</tspan></text>
+    </g>
   </g>
 </svg>
