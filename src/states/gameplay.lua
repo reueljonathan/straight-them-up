@@ -5,27 +5,33 @@ local points = 0
 local gameover = false
 local changeToState
 
-local background, cardImg
-local hand = love.graphics.newImage('img/hand.png')
+local background, cardsImg
+local shuffler = {}
 local handx = 324
 local handy = 475
 
 local suits = {'heart', 'diamond', 'club', 'spade'}
 local values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13} 
 local cards = {}
-local playerCards = {}
 
-function randomizeCards(index) 
-    cards[index] = { {suit = suits[math.random(4)], value = values[math.random(12)]}} 
+local enemies
+local bullets
+
+function randomizeCards() 
+    return  { {suit = suits[math.random(4)], value = values[math.random(12)]}} 
 end
 
-function randomizePlayerCards()
-    playerCards = {
+function randomizePlayerCards(player)
+    player.cards = {
         {
+            x=nil,
+            y=nil,
             suit = suits[math.random(4)],
             value = values[math.random(12)]
         },
         {
+            x=nil,
+            y=nil,
             suit = suits[math.random(4)],
             value = values[math.random(12)]
         }
@@ -257,52 +263,146 @@ function gameplay.reset()
     points = 0
     gameover = false
     background = love.graphics.newImage('/img/background.png')
-    cardImg = love.graphics.newImage('/img/card.png')
-    
+    cardsImg = love.graphics.newImage('/img/cards.png')
+
+    shuffler = {
+        img = love.graphics.newImage('/img/shuffler.png'),
+        x = 400-18,
+        y = 500,
+        cards = {},
+        firedCards=0,
+        firing = false,
+        timeFromLastShoot = 0,
+        update = function(self, dt)
+            if love.keyboard.isDown('left') and self.x > 20 then
+                self.x = self.x - 1
+            elseif love.keyboard.isDown('right') and self.x < 750 then
+                self.x = self.x + 1
+            end
+
+            if self.firing then
+                if self.firedCards == 0 then
+                    local b = self.cards[1] -- table.remove(self.cards, 1)
+                    b.x = self.x + 3
+                    b.y = self.y + 2
+                    table.insert( bullets, b)
+                    self.firedCards =  1
+                elseif self.firedCards == 1 then
+                    self.timeFromLastShoot = self.timeFromLastShoot + dt
+                    
+                    if self.timeFromLastShoot > 0.2 then -- if 200ms from last shoot
+                        local b = self.cards[2] -- table.remove(self.cards, 1)
+                        b.x = self.x + 3
+                        b.y = self.y + 2
+                        table.insert( bullets, b)
+                        self.timeFromLastShoot = 0
+                        self.firedCards = 2 
+                    end
+                else
+                    self.firing = false             
+                    self.firedCards = 0
+                    randomizePlayerCards(self)
+                end 
+            end
+        end
+    }
+
+    enemies = {}
+    bullets = {}
+
+    for i=1, 5 do
+        table.insert(enemies, createEnemie())
+    end
+
     handx = 2
     cards = {}
-    playerCards= {}
     
-    for i=1, 5 do
-        randomizeCards(i)
-    end
-    randomizePlayerCards()
+    randomizePlayerCards(shuffler)
+
 end
 
 function gameplay.keyreleased(key)
+
+end
+
+function gameplay.keypressed(key)
     if gameover and changeToState ~= nil then
         changeToState('states.menu')
     else
-        if key == 'left' and handx > 0 then
-            handx = handx - 1
-        elseif key == 'right' and handx < 4 then
-            handx = handx + 1
-        elseif key == 'up' then
-            table.insert(cards[handx+1], playerCards[1])
-            table.insert(cards[handx+1], playerCards[2])
-            if #cards[handx+1] == 7 then
-                searchCombinations(cards[handx+1])
-                randomizeCards(handx+1)
-            end 
-            randomizePlayerCards() 
+        if key == 'up' then
+            print('fire!')
+            if not shuffler.firing then
+                shuffler.firing = true
+            end
         end 
     end 
 end
 
+function drawCard(value, suit, x, y)
+    local cardQuad, line, column
+
+    if suit == 'heart' then
+        line = 0
+    elseif suit == 'diamond' then
+        line = 1
+    elseif suit == 'spade' then
+        line = 2
+    else
+        line = 3
+    end
+
+    column = value-1
+
+    cardQuad = love.graphics.newQuad(column*25, line*36, 25, 36, cardsImg:getDimensions())
+
+    love.graphics.draw(cardsImg, cardQuad, x, y)
+end
+
+function createEnemie()
+    local e = {
+        x = math.floor( math.random() *760) + 20,
+        y = math.floor( math.random() *200 ) + 20,
+        update = function(self, dt)
+            self.x = self.x + 0.1
+
+            if(self.x > 800) then
+                self.x = -25
+            end
+
+        end,
+        cards = randomizeCards()
+    }
+    return e
+end
+
 function gameplay.draw()
     love.graphics.draw(background, 0, 0)
-
+    
     love.graphics.print( math.floor(time), 20, 15)
 
-    love.graphics.draw( hand, 20+ (152*handx), handy )
-    for i=1, #playerCards do
-        love.graphics.print( playerCards[i].value .. ' ' .. playerCards[i].suit, 25 + (152*handx), handy+(20*i))
-    end
-    for i=1, #cards do 
-        for j=1, #cards[i] do
-            love.graphics.draw(cardImg, 20+(i-1)*152, 30+(j*20))
-            love.graphics.print(cards[i][j].value .. ' ' .. cards[i][j].suit, 20 + (i-1)*152, 30 + (j*20))
+    --love.graphics.draw( hand, 20+ (152*handx), handy )
+
+    
+
+    for i=1, #enemies do 
+        for j=1, #enemies[i].cards do
+            --love.graphics.draw(cardImg, 20+(i-1)*152, 30+(j*20))
+            --love.graphics.print(cards[i][j].value .. ' ' .. cards[i][j].suit, 20 + (i-1)*152, 30 + (j*20))
+            drawCard( enemies[i].cards[j].value, enemies[i].cards[j].suit, enemies[i].x, enemies[i].y)
         end
+    end
+
+    for i=1, #bullets do
+        drawCard( bullets[i].value, bullets[i].suit, bullets[i].x, bullets[i].y)
+    end
+    
+    if #shuffler.cards > 0 then
+        drawCard(shuffler.cards[1].value, shuffler.cards[1].suit, shuffler.x + 3, shuffler.y+2)
+    end
+    love.graphics.draw(shuffler.img, shuffler.x, shuffler.y)
+    
+    for i=1, #shuffler.cards do
+       drawCard(shuffler.cards[i].value, shuffler.cards[i].suit, shuffler.x - 12 + (i-1)*30, shuffler.y + 60) 
     end
 
     if gameover then
@@ -315,6 +415,40 @@ function gameplay.update(dt)
         gameover = true
     else
         time = time - dt
+    end
+
+    if not gameover then
+        if #enemies < 5 then
+            table.insert( enemies, createEnemie() )
+        end
+
+        for i=1, #enemies do
+            enemies[i]:update(dt)
+        end
+        
+        -- remove dead bullets
+        --[[local i = 1
+        local size = #bullets
+        repeat
+            if bullets[i] and bullets[i].isDead then
+                table.remove( bullets, i)
+                size = #bullets
+            else
+                i = i + 1
+            end
+        until i == size]]
+ 
+        for i=1, #bullets do
+            bullets[i].y = bullets[i].y - 1
+            
+            if bullets[i].y < -35 then
+               bullets[i].isDead = true 
+            end
+        end
+
+        
+
+        shuffler:update(dt)
     end
 end
 

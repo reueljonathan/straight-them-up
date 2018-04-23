@@ -5,4 +5,6 @@ function love.conf(t)
 --    t.window.icon = 'img/icon.png'
     t.window.width = 800
     t.window.height = 600
+
+    t.window.vsync = 1
 end

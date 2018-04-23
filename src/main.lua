@@ -16,3 +16,7 @@ end
 function love.keyreleased(key)
     stateMachine.keyreleased(key)
 end
+
+function love.keypressed(key)
+    stateMachine.keypressed(key)
+end

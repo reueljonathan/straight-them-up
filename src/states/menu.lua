@@ -19,6 +19,10 @@ function menu.keyreleased(key)
     end
 end
 
+function menu.keypressed(key)
+
+end
+
 function menu.setChangeToState(cts)
     changeToState = cts
 end

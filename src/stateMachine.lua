@@ -20,4 +20,7 @@ function stateMachine.keyreleased(key)
     actualState.keyreleased(key)
 end
 
+function stateMachine.keypressed(key)
+    actualState.keypressed(key)
+end
 return stateMachine
