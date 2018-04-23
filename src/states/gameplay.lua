@@ -5,6 +5,7 @@ local points = 0
 local gameover = false
 local changeToState
 
+local background, cardImg
 local hand = love.graphics.newImage('img/hand.png')
 local handx = 324
 local handy = 475
@@ -255,6 +256,8 @@ function gameplay.reset()
     time = 90
     points = 0
     gameover = false
+    background = love.graphics.newImage('/img/background.png')
+    cardImg = love.graphics.newImage('/img/card.png')
     
     handx = 2
     cards = {}
@@ -287,6 +290,8 @@ function gameplay.keyreleased(key)
 end
 
 function gameplay.draw()
+    love.graphics.draw(background, 0, 0)
+
     love.graphics.print( math.floor(time), 20, 15)
 
     love.graphics.draw( hand, 20+ (152*handx), handy )
@@ -295,6 +300,7 @@ function gameplay.draw()
     end
     for i=1, #cards do 
         for j=1, #cards[i] do
+            love.graphics.draw(cardImg, 20+(i-1)*152, 30+(j*20))
             love.graphics.print(cards[i][j].value .. ' ' .. cards[i][j].suit, 20 + (i-1)*152, 30 + (j*20))
         end
     end
